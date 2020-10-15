@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.mapper.PaymentDao">
+  <resultMap id="BaseResultMap" type="com.cloud.pojo.Payment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="searial" jdbcType="VARCHAR" property="searial" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, searial
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.pojo.Payment" useGeneratedKeys="true">
+    insert into payment (searial)
+    values (#{searial,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cloud.pojo.Payment" useGeneratedKeys="true">
+    insert into payment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="searial != null">
+        searial,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="searial != null">
+        #{searial,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.pojo.Payment">
+    update payment
+    <set>
+      <if test="searial != null">
+        searial = #{searial,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.pojo.Payment">
+    update payment
+    set searial = #{searial,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
