@@ -6,10 +6,14 @@ import com.cloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/***
+ * 模拟订单的生产者
+ */
 @RestController
 @Slf4j   //@Slf4j  打印日志  === private  final Logger logger = LoggerFactory.getLogger(当前类名.class);
 public class PaymentController {
@@ -18,7 +22,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/payment/creat")
-    public CommentResult creat(Payment payment) {
+    public CommentResult creat(@RequestBody Payment payment) {
         int result = paymentService.insert(payment);
         log.info("插入结果:" + result);
         if (result > 0) {
