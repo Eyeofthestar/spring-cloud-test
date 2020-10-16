@@ -1,4 +1,4 @@
-package com.cloud.pojo;
+package com.api.cloud.pojo;
 
 import lombok.Data;
 

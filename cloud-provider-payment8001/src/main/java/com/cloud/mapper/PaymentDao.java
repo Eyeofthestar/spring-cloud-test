@@ -1,6 +1,6 @@
 package com.cloud.mapper;
 
-import com.cloud.pojo.Payment;
+import com.api.cloud.pojo.Payment;
 
 public interface PaymentDao {
     int deleteByPrimaryKey(Integer id);
